@@ -30,7 +30,7 @@ git clone git@github.com:s1mpleTEK/TicTacToe.git
 
 ## Usage
 
-For start the game write in TicTacToe repository:
+For start the game write in TicTacToe.py repository:
 ```
 ./TicTacToe.py
 ```
