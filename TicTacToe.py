@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-import numpy as np
 import re
 
 #win_patern: 8 solution, [[[line],[col]],[[line],[col]],[[line],[col]]]
@@ -16,7 +15,7 @@ import re
 def set_user():                                         #set name for players
     user =   [input("Player 1 enter your name: "),      #name of player 1
             input("Player 2 enter your name: "),        #name of player 2
-            1]                                          #player turn: 1 means O & 2 means X & 0 means someone win & -1 means draw
+            1]                                          #player turn: 1 means O & 2 means X & 0 means someone win & -1 means tie
 
     return (user)
 
@@ -61,41 +60,41 @@ def update_table(table, user, col, line):                       #update game boa
 
     return (table)
 
-def game_condition(table, user):                                                    #verify the win or draw and switch or not the player
+def game_condition(table, user):                                                        #verify the win or draw and switch or not the player
     for i in range (3):
-        if user[2] % 2 == 1:                                                        #choose the good player
-            if table[i][0] == "O" and table[i][1] == "O" and table[i][2] == "O":    #verify all line for player 1
+        if user[2] % 2 == 1:                                                            #choose the good player
+            if table[i][0] == "O" and table[i][1] == "O" and table[i][2] == "O":        #verify all line for player 1
                 user[2] = 0
-            if table[0][i] == "O" and table[1][i] == "O" and table[2][i] == "O":    #verify all column for player 1
+            elif table[0][i] == "O" and table[1][i] == "O" and table[2][i] == "O":      #verify all column for player 1
                 user[2] = 0
-            if table[0][0] == "O" and table[1][1] == "O" and table[2][2] == "O":    #verify digonal left top to right bottom for player 1
+            elif table[0][0] == "O" and table[1][1] == "O" and table[2][2] == "O":      #verify digonal left top to right bottom for player 1
                 user[2] = 0
-            if table[0][2] == "O" and table[1][1] == "O" and table[2][0] == "O":    #verify digonal right top to left bottom for player 1
+            elif table[0][2] == "O" and table[1][1] == "O" and table[2][0] == "O":      #verify digonal right top to left bottom for player 1
                 user[2] = 0
             if user[2] == 0:
                 print(user[0],"wins !")
                 return (user)
         else:
-            if table[i][0] == "X" and table[i][1] == "X" and table[i][2] == "X":    #verify all line for player 2
+            if table[i][0] == "X" and table[i][1] == "X" and table[i][2] == "X":        #verify all line for player 2
                 user[2] = 0
-            if table[0][i] == "X" and table[1][i] == "X" and table[2][i] == "X":    #verify all column for player 2
+            elif table[0][i] == "X" and table[1][i] == "X" and table[2][i] == "X":      #verify all column for player 2
                 user[2] = 0
-            if table[0][0] == "X" and table[1][1] == "X" and table[2][2] == "X":    #verify digonal left top to right bottom for player 2
+            elif table[0][0] == "X" and table[1][1] == "X" and table[2][2] == "X":      #verify digonal left top to right bottom for player 2
                 user[2] = 0
-            if table[0][2] == "X" and table[1][1] == "X" and table[2][0] == "X":    #verify digonal right top to left bottom for player 2
+            elif table[0][2] == "X" and table[1][1] == "X" and table[2][0] == "X":      #verify digonal right top to left bottom for player 2
                 user[2] = 0
             if user[2] == 0:
                 print(user[1],"wins !")
                 return (user)
 
-    if "" in table[0] or "" in table[1] or "" in table[0]:                          #verify if the game board is not full
+    if "" in table[0] or "" in table[1] or "" in table[0]:                              #verify if the game board is not full
         if user[2] % 2 == 1:
             user[2] = 2
         else:
             user[2] = 1
         return (user)
-    else:                                                                           #if the game board is full
-        print("Draw!")
+    else:                                                                               #if the game board is full
+        print("Tie!")
         user[2] = -1
         return (user)
 
@@ -107,5 +106,5 @@ if __name__ == "__main__":
         print(user[user[2]-1],"'s turn")                        #display player turn
         table = game_loop(table, user)                          #interaction with players
         user = game_condition(table, user)                      #verify the win or draw and switch or not the player
-        if user[2] == 0 or user[2] == -1:                       #if turn equal 0 so the game stop because someone win or if turn equal -1 so the game stop because draw
+        if user[2] == 0 or user[2] == -1:                       #if turn equal 0 so the game stop because someone win or if turn equal -1 so the game stop because the game is tie
             break
