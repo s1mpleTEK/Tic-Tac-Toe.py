@@ -99,12 +99,15 @@ def game_condition(table, user):                                                
         return (user)
 
 if __name__ == "__main__":
-    user = set_user()                                           #set name for player
-    table = set_table()                                         #init game board
-    print("\n",table[0],"\n",table[1],"\n",table[2],"\n")       #display the first game board
-    while (True):
-        print(user[user[2]-1],"'s turn")                        #display player turn
-        table = game_loop(table, user)                          #interaction with players
-        user = game_condition(table, user)                      #verify the win or draw and switch or not the player
-        if user[2] == 0 or user[2] == -1:                       #if turn equal 0 so the game stop because someone win or if turn equal -1 so the game stop because the game is tie
-            break
+    try:
+        user = set_user()                                           #set name for player
+        table = set_table()                                         #init game board
+        print("\n",table[0],"\n",table[1],"\n",table[2],"\n")       #display the first game board
+        while (True):
+            print(user[user[2]-1],"'s turn")                        #display player turn
+            table = game_loop(table, user)                          #interaction with players
+            user = game_condition(table, user)                      #verify the win or draw and switch or not the player
+            if user[2] == 0 or user[2] == -1:                       #if turn equal 0 so the game stop because someone win or if turn equal -1 so the game stop because the game is tie
+                break
+    except (EOFError, KeyboardInterrupt) as error:
+        exit()
