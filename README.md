@@ -4,11 +4,11 @@ A local 1v1 game on your terminal is now available in python!
 
 ## Table of Contents
 
-- [Rules](https://github.com/s1mpleTEK/epitech-folder#rules)
-- [Installation](https://github.com/s1mpleTEK/epitech-folder#installation)
-- [Usage](https://github.com/s1mpleTEK/epietch-folder#usage)
-- [License](https://github.com/s1mpleTEK/epietch-folder#license)
-- [Author](https://github.com/s1mpleTEK/epitech-folder#author)
+- [Rules](https://github.com/s1mpleTEK/TicTacToe#rules)
+- [Installation](https://github.com/s1mpleTEK/TicTacToe#installation)
+- [Usage](https://github.com/s1mpleTEK/TicTacToe#usage)
+- [License](https://github.com/s1mpleTEK/TicTacToe#license)
+- [Author](https://github.com/s1mpleTEK/TicTacToe#author)
 
 ## Rules
 
