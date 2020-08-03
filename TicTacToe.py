@@ -4,17 +4,17 @@ import numpy as np
 import re
 
 turn = 1    #player turn
-            #1 means O & 2 means X & 0 means someone win
+            #1 means O & 2 means X & 0 means someone win & -1 means draw
 
-#8 solution, [[[line],[col]],[[line],[col]],[[line],[col]]]
-win_patern =    [[[[0],[0]],[[0],[1]],[[0],[2]]],   #first line full
-                [[[0],[0]],[[1],[0]],[[2],[0]]],    #first column full
-                [[[0],[0]],[[1],[1]],[[2],[2]]],    #digonal left top to right bottom
-                [[[0],[1]],[[1],[1]],[[2],[1]]],    #second column full
-                [[[0],[2]],[[2],[2]],[[2],[2]]],    #third column full
-                [[[0],[2]],[[1],[1]],[[2],[0]]],    #digonal right top to left bottom
-                [[[1],[0]],[[1],[1]],[[1],[2]]],    #second line full
-                [[[2],[0]],[[2],[1]],[[2],[2]]],]   #third line full
+#win_patern: 8 solution, [[[line],[col]],[[line],[col]],[[line],[col]]]
+# wp =    [[[[0],[0]],[[0],[1]],[[0],[2]]],   #first line full
+#         [[[0],[0]],[[1],[0]],[[2],[0]]],    #first column full
+#         [[[0],[0]],[[1],[1]],[[2],[2]]],    #digonal left top to right bottom
+#         [[[0],[1]],[[1],[1]],[[2],[1]]],    #second column full
+#         [[[0],[2]],[[2],[2]],[[2],[2]]],    #third column full
+#         [[[0],[2]],[[1],[1]],[[2],[0]]],    #digonal right top to left bottom
+#         [[[1],[0]],[[1],[1]],[[1],[2]]],    #second line full
+#         [[[2],[0]],[[2],[1]],[[2],[2]]],]   #third line full
 
 def set_user():                                     #set name for players
     user =   [input("Player 1 enter your name: "),  #name of player 1
@@ -65,6 +65,23 @@ def update_table(table, user, col, line):                       #update game boa
     return (table)
 
 def win_condition(table, user):
+    for i in range (3):
+        if user[2] % 2 == 1:
+            if table[i][0] == "O" and table[i][1] == "O" and table[i][2] == "O":
+                user[2] = 0
+            if table[0][i] == "O" and table[1][i] == "O" and table[2][i] == "O":
+                user[2] = 0
+            if user[2] == 0:
+                print(user[0],"wins !")
+                return (user)
+        else:
+            if table[i][0] == "X" and table[i][1] == "X" and table[i][2] == "X":
+                user[2] = 0
+            if table[0][i] == "X" and table[1][i] == "X" and table[2][i] == "X":
+                user[2] = 0
+            if user[2] == 0:
+                print(user[1],"wins !")
+                return (user)
     if user[2] % 2 == 1:
         user[2] = 2
     else:
@@ -79,5 +96,5 @@ if __name__ == "__main__":
         print(user[user[2]-1],"'s turn")                        #display player turn
         table = game_loop(table, user)                          #interaction with players
         user = win_condition(table, user)                       #verify game board
-        if user[2] == 0:                                        #if turn equal 0, the game stop because someone win
+        if user[2] == 0 or user[2] == -1:                       #if turn equal 0 so the game stop because someone win or if turn equal -1 so the game stop because draw
             break
