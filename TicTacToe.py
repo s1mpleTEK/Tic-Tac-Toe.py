@@ -32,7 +32,7 @@ def game_loop(table, user):                                             #interac
     if  bool(re.match('^[1-3]*$', line))==True and len(line) == 1:      #verify if in line we found characters 1, 2 or 3 and if length of line equal 1
         line = int(line) - 1                                            #converts line into int and makes minus 1 to have the index
     else:                                                               #if in line we found other characters or the lenght of line is not equal 1, so restart turn
-        print("Invalide input, retry")
+        print("Invalid input, retry")
         return (game_loop(table, user))
 
     #Choose a column
@@ -40,7 +40,7 @@ def game_loop(table, user):                                             #interac
     if  bool(re.match('^[1-3]*$', col))==True and len(col) == 1:        #verify if in column we found characters 1, 2 or 3 and if length of column equal 1
         col = int(col) - 1                                              #converts column into int and makes minus 1 to have the index
     else:                                                               #if in column we found other characters or the lenght of column is not equal 1, so restart turn
-        print("Invalide input, retry")
+        print("Invalid input, retry")
         return (game_loop(table, user))
 
     #Verification empty case
