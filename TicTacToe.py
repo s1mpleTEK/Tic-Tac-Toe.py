@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import re
+import numpy as np
 
 #win_patern: 8 solution, [[[line],[col]],[[line],[col]],[[line],[col]]]
 # wp =    [[[[0],[0]],[[0],[1]],[[0],[2]]],   #first line full
@@ -12,6 +13,8 @@ import re
 #         [[[1],[0]],[[1],[1]],[[1],[2]]],    #second line full
 #         [[[2],[0]],[[2],[1]],[[2],[2]]],]   #third line full
 
+empty_space = "_"
+
 def set_user():                                         #set name for players
     user =   [input("Player 1 enter your name: "),      #name of player 1
             input("Player 2 enter your name: "),        #name of player 2
@@ -19,10 +22,10 @@ def set_user():                                         #set name for players
 
     return (user)
 
-def set_table():                #init game board
-    table =     [["","",""],    #top
-                ["","",""],     #mid
-                ["","",""]]     #bot
+def set_table():                            #init game board
+    table = np.zeros((3,3), dtype=str)      #init empty list
+    for i in range (3):                     #set "_" in every line
+        table[i] = empty_space
 
     return (table)
 
@@ -50,50 +53,60 @@ def game_loop(table, user):                                             #interac
 
     return (update_table(table, user, col, line))
 
+def display_table(table):       #display game board
+    print("")
+
+    for i in range (3):         #display line per line
+        print(table[i])
+
+    print("")
+
+    return
+
 def update_table(table, user, col, line):                       #update game board
     if user[2] % 2 == 1:                                        #choose the good character depending on player
         table[line][col] = "O"                                  #1%2=1 so "O"
     else:
         table[line][col] = "X"                                  #2%2=0 so "X"
 
-    print("\n",table[0],"\n",table[1],"\n",table[2],"\n")       #display game board
+    display_table(table)                                        #display game board
 
     return (table)
 
-def game_condition(table, user):                                                        #verify the win or draw and switch or not the player
+def game_condition(table, user):                                                            #verify the win or draw and switch or not the player
     for i in range (3):
-        if user[2] % 2 == 1:                                                            #choose the good player
-            if table[i][0] == "O" and table[i][1] == "O" and table[i][2] == "O":        #verify all line for player 1
+        if user[2] % 2 == 1:                                                                #choose the good player
+            if table[i][0] == "O" and table[i][1] == "O" and table[i][2] == "O":            #verify all line for player 1
                 user[2] = 0
-            elif table[0][i] == "O" and table[1][i] == "O" and table[2][i] == "O":      #verify all column for player 1
+            elif table[0][i] == "O" and table[1][i] == "O" and table[2][i] == "O":          #verify all column for player 1
                 user[2] = 0
-            elif table[0][0] == "O" and table[1][1] == "O" and table[2][2] == "O":      #verify digonal left top to right bottom for player 1
+            elif table[0][0] == "O" and table[1][1] == "O" and table[2][2] == "O":          #verify digonal left top to right bottom for player 1
                 user[2] = 0
-            elif table[0][2] == "O" and table[1][1] == "O" and table[2][0] == "O":      #verify digonal right top to left bottom for player 1
+            elif table[0][2] == "O" and table[1][1] == "O" and table[2][0] == "O":          #verify digonal right top to left bottom for player 1
                 user[2] = 0
             if user[2] == 0:
                 print(user[0],"wins !")
                 return (user)
         else:
-            if table[i][0] == "X" and table[i][1] == "X" and table[i][2] == "X":        #verify all line for player 2
+            if table[i][0] == "X" and table[i][1] == "X" and table[i][2] == "X":            #verify all line for player 2
                 user[2] = 0
-            elif table[0][i] == "X" and table[1][i] == "X" and table[2][i] == "X":      #verify all column for player 2
+            elif table[0][i] == "X" and table[1][i] == "X" and table[2][i] == "X":          #verify all column for player 2
                 user[2] = 0
-            elif table[0][0] == "X" and table[1][1] == "X" and table[2][2] == "X":      #verify digonal left top to right bottom for player 2
+            elif table[0][0] == "X" and table[1][1] == "X" and table[2][2] == "X":          #verify digonal left top to right bottom for player 2
                 user[2] = 0
-            elif table[0][2] == "X" and table[1][1] == "X" and table[2][0] == "X":      #verify digonal right top to left bottom for player 2
+            elif table[0][2] == "X" and table[1][1] == "X" and table[2][0] == "X":          #verify digonal right top to left bottom for player 2
                 user[2] = 0
             if user[2] == 0:
                 print(user[1],"wins !")
                 return (user)
 
-    if "" in table[0] or "" in table[1] or "" in table[2]:                              #verify if the game board is not full
+    if empty_space in table[0] or empty_space in table[1] or empty_space in table[2]:       #verify if the game board is not full
         if user[2] % 2 == 1:
             user[2] = 2
         else:
             user[2] = 1
         return (user)
-    else:                                                                               #if the game board is full
+    else:                                                                                   #if the game board is full
         print("Tie!")
         user[2] = -1
         return (user)
@@ -102,7 +115,7 @@ if __name__ == "__main__":
     try:
         user = set_user()                                           #set name for player
         table = set_table()                                         #init game board
-        print("\n",table[0],"\n",table[1],"\n",table[2],"\n")       #display the first game board
+        display_table(table)                                        #display game board
         while (True):
             print(user[user[2]-1],"'s turn")                        #display player turn
             table = game_loop(table, user)                          #interaction with players
