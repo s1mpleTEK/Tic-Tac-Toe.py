@@ -1,6 +1,6 @@
 # TicTacToe
 
-A local 1v1 game on your terminal is now available in python!
+A local TicTacToe on your terminal is now available in python!
 
 ## Table of Contents
 
