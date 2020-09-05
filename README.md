@@ -4,11 +4,11 @@ A local TicTacToe on your terminal is now available in python!
 
 ## Table of Contents
 
-- [Rules](https://github.com/s1mpleTEK/TicTacToe#rules)
-- [Installation](https://github.com/s1mpleTEK/TicTacToe#installation)
-- [Usage](https://github.com/s1mpleTEK/TicTacToe#usage)
-- [License](https://github.com/s1mpleTEK/TicTacToe#license)
-- [Author](https://github.com/s1mpleTEK/TicTacToe#author)
+- [Rules](https://github.com/s1mpleTEK/TicTacToe.py#rules)
+- [Installation](https://github.com/s1mpleTEK/TicTacToe.py#installation)
+- [Usage](https://github.com/s1mpleTEK/TicTacToe.py#usage)
+- [License](https://github.com/s1mpleTEK/TicTacToe.py#license)
+- [Author](https://github.com/s1mpleTEK/TicTacToe.py#author)
 
 ## Rules
 
@@ -25,7 +25,7 @@ A local TicTacToe on your terminal is now available in python!
 
 To clone this project, write this command:
 ```
-git clone git@github.com:s1mpleTEK/TicTacToe.git
+git clone git@github.com:s1mpleTEK/TicTacToe.py.git
 ```
 
 ## Usage
@@ -37,7 +37,7 @@ For start the game write in TicTacToe.py repository:
 
 ## License
 
-[MIT](https://github.com/s1mpleTEK/epitech-folder/blob/master/LICENSE)
+[MIT](https://github.com/s1mpleTEK/TicTacToe.py/blob/master/LICENSE)
 
 ## Author
 
